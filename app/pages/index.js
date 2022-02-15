@@ -28,8 +28,12 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [inputIndex, shown, input, handleKeyPress]);
- 
+  }, [inputIndex, shown, input, handleKeyPress, months.filter((month) => {
+    return month
+      .toLowerCase()
+      .startsWith(input.toLowerCase());
+  })]);
+
   useEffect(() => {
     document.addEventListener("click", handlePageClick);
     return () => {
@@ -53,6 +57,7 @@ export default function Home() {
       case "ArrowDown":
         if (shown) {
           e.preventDefault();
+          
           if (inputIndex == months.length - 1) {
             setInputIndex(0);
           } else {
@@ -84,13 +89,13 @@ export default function Home() {
         break;
     }
   }
-  
+
   function handlePageClick(e) {
     if (shown && e.target.id !== "options") {
       setShown(false);
     }
   }
-  
+
   // Functions
   function toggleOptions() {
     if (!shown && document.activeElement.id === "input") {
@@ -129,9 +134,20 @@ export default function Home() {
                 placeholder="Month"
                 value={input}
                 autoComplete="off"
-                onChange={() =>
-                  setInput(document.getElementById("input").value)
-                }
+                onChange={() => {
+                  setInput(document.getElementById("input").value);
+                  if (input.length != 0) {
+                    setInputIndex(
+                      months.indexOf(
+                        months.filter((month) => {
+                          return month
+                            .toLowerCase()
+                            .startsWith(input.toLowerCase());
+                        })[0]
+                      )
+                    );
+                  }
+                }}
                 onClick={toggleOptions}
               />
               <button
