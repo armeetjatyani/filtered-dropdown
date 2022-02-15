@@ -28,7 +28,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [inputIndex, shown, input]);
+  }, [inputIndex, shown, input, handleKeyPress]);
 
   // Event Listeners
   function handleKeyPress(e) {
@@ -96,7 +96,7 @@ export default function Home() {
       <div className="flex flex-col items-center w-full h-screen text-slate-400 bg-slate-900">
         <div className="p-6 mt-16 rounded-md w-[300px] overflow-x-auto bg-slate-800 shadow-md ">
           <pre className="font-mono text-lg font-bold text-slate-200">
-            <code class="">{JSON.stringify(getJSON(), null, "  ")}</code>
+            <code>{JSON.stringify(getJSON(), null, "  ")}</code>
           </pre>
         </div>
         <div className="relative mt-6 ">
