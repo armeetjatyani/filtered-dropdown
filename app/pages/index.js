@@ -84,7 +84,7 @@ export default function Home() {
         break;
     }
   }
-
+  
   function handlePageClick(e) {
     if (shown && e.target.id !== "options") {
       setShown(false);
