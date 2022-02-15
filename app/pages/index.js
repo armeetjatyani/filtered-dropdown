@@ -29,7 +29,7 @@ export default function Home() {
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, [inputIndex, shown, input, handleKeyPress]);
-
+ 
   useEffect(() => {
     document.addEventListener("click", handlePageClick);
     return () => {
