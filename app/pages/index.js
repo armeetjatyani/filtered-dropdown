@@ -191,9 +191,6 @@ export default function Home() {
       </div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="/path/to/styles/default.css" />
-        <script src="/path/to/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
       </Head>
     </div>
   );
