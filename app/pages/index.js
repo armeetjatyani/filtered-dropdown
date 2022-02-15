@@ -30,6 +30,13 @@ export default function Home() {
     };
   }, [inputIndex, shown, input, handleKeyPress]);
 
+  useEffect(() => {
+    document.addEventListener("click", handlePageClick);
+    return () => {
+      document.removeEventListener("click", handlePageClick);
+    };
+  }, [shown]);
+
   // Event Listeners
   function handleKeyPress(e) {
     switch (e.key) {
@@ -78,6 +85,12 @@ export default function Home() {
     }
   }
 
+  function handlePageClick(e) {
+    if (shown && e.target.id !== "options") {
+      setShown(false);
+    }
+  }
+  
   // Functions
   function toggleOptions() {
     if (!shown && document.activeElement.id === "input") {
